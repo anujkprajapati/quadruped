@@ -13,7 +13,7 @@ class Robot:
         return self.client, self.robot
     
     def apply_action(self, action):
-        action = np.full(14,-0.5)
+        #action = np.full(14,-0.5)
         p.setJointMotorControlArray(self.robot, self.jointArray, controlMode=p.POSITION_CONTROL,
             targetPositions=action, physicsClientId=self.client)
         
