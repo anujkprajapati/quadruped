@@ -16,5 +16,5 @@ For training
 
 For testing copy the model files in tmp/sac
 >>main_sac.py  
->>learning = False
+>>learning = False  
 >>load_checkpoint = True
