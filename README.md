@@ -11,7 +11,8 @@ $ mkdir plots
 For training  
 >>main_sac.py    
 >>learning = True   
->>load_checkpoint = False    
+>>load_checkpoint = False       
+
 For testing copy the model files in tmp/sac
 >>main_sac.py  
 >>learning = False
