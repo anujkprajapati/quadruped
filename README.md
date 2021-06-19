@@ -8,7 +8,11 @@ make additional folders tmp/sac & plots:
 $ mkdir -p tmp/sac  
 $ mkdir plots  
 
-For training
+For training  
+>>main_sac.py    
+>>learning = True   
+>>load_checkpoint = False    
+For testing copy the model files in tmp/sac
 >>main_sac.py  
->>learning = True
->>load = False
+>>learning = False
+>>load_checkpoint = True
