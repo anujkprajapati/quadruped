@@ -1,5 +1,6 @@
 # quadruped
-Custom gym environment of a quadruped for RL training using SAC  
+Custom gym environment of a quadruped for RL training using SAC   
+source available at https://github.com/anujkprajapati/quadruped   
 
 register using "pip install e ." in the quadruped root directory.  
 
