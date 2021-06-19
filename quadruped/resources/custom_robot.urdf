@@ -4,31 +4,31 @@
     <!-- Colors --> 
     <material name="black"> 
         <color rgba="0 0 0 1"/>
-	</material>
+    </material>
     <material name="blue"> 
         <color rgba="0 0 1 1"/>
     </material>
     
     <material name="grey"> 
-    	<color rgba="0.91 0.925 0.945 1"/>
+        <color rgba="0.91 0.925 0.945 1"/>
     </material>
     <material name="red"> 
-    	<color rgba="1 0 0 1"/>
+        <color rgba="1 0 0 1"/>
     </material>
  
 
 
     <!-- Spine --> 
     <link name="spine">
-    	<visual>
-    		<geometry>
-    			<cylinder length="0.1" radius="0.01"/>
+        <visual>
+            <geometry>
+                <cylinder length="0.1" radius="0.01"/>
                 
-    		</geometry>
+            </geometry>
             <origin rpy="0 1.57075 0" xyz="0 0 0"/>
-    		<material name="grey"/>
-    	</visual>
-    	
+            <material name="grey"/>
+        </visual>
+        
         <inertial> 
             <mass value="5"/>
             <inertia ixx="0.2" ixy="0" ixz="0" iyy="0.2" iyz="0.0" izz="0.2"/>
@@ -37,25 +37,25 @@
     
     <!--Head -->
     <link name="head">
-    	<visual>
-    		<geometry>
-    			<cylinder length="0.1" radius="0.02"/>
-    		</geometry>
+        <visual>
+            <geometry>
+                <cylinder length="0.1" radius="0.02"/>
+            </geometry>
             <origin rpy="0 1.57075 0" xyz="0.05 0 0"/>
-    		<material name="red"/>
-    	</visual>
-    	<collision>
-    		<geometry>
-    			<cylinder length="0.1" radius="0.02"/>
-    		</geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.1" radius="0.02"/>
+            </geometry>
             <origin rpy="0 1.57075 0" xyz="0.05 0 0"/>
-    	</collision>
-    	<inertial>
-    		<mass value="5"/>
-    		<inertia ixx="0.2" ixy="0" ixz="0" iyy="0.2" iyz="0.0" izz="0.2"/>
-    	</inertial>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="0.2" ixy="0" ixz="0" iyy="0.2" iyz="0.0" izz="0.2"/>
+        </inertial>
     </link>
-    <joint name="spine-head" type="revolute">
+    <joint name="spine-head" type="fixed">
         <parent link="spine"/>
         <child link="head"/> 
         <axis xyz="0 -1 0"/>
@@ -65,25 +65,25 @@
     
     <!--Tail -->
     <link name="tail">
-    	<visual>
-    		<geometry>
-    			<cylinder length="0.1" radius="0.02"/>
-    		</geometry>
+        <visual>
+            <geometry>
+                <cylinder length="0.1" radius="0.02"/>
+            </geometry>
             <origin rpy="0 -1.57075 0" xyz="-0.05 0 0"/>
-    		<material name="blue"/>
-    	</visual>
-    	<collision>
-    		<geometry>
-    			<cylinder length="0.1" radius="0.02"/>
-    		</geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.1" radius="0.02"/>
+            </geometry>
             <origin rpy="0 -1.57075 0" xyz="-0.05 0 0"/>
-    	</collision>
-    	<inertial>
-    		<mass value="5"/>
-    		<inertia ixx="0.2" ixy="0" ixz="0" iyy="0.2" iyz="0.0" izz="0.2"/>
-    	</inertial>
+        </collision>
+        <inertial>
+            <mass value="5"/>
+            <inertia ixx="0.2" ixy="0" ixz="0" iyy="0.2" iyz="0.0" izz="0.2"/>
+        </inertial>
     </link>
-    <joint name="spine-tail" type="revolute">
+    <joint name="spine-tail" type="fixed">
         <parent link="spine"/>
         <child link="tail"/> 
         <axis xyz="0 1 0"/>
@@ -94,420 +94,436 @@
     <!--Flanges-->
     <!--1.front_left-->
     <link name="flange1">
-   	<visual>
-   		<geometry>
-   			<box size="0.05 0.05 0.01"/>
-   		</geometry>
+       <visual>
+           <geometry>
+               <box size="0.05 0.05 0.01"/>
+           </geometry>
+           <origin rpy="0 0 0" xyz="0 0.045 0"/>
+           <material name="black"/>
+       </visual>
+       <collision>
+           <geometry>
+               <box size="0.05 0.05 0.01"/>
+           </geometry>
         <origin rpy="0 0 0" xyz="0 0.045 0"/>
-   		<material name="black"/>
-   	</visual>
-   	<collision>
-   		<geometry>
-   			<box size="0.05 0.05 0.01"/>
-   		</geometry>
-        <origin rpy="0 0 0" xyz="0 0.045 0"/>
-   	</collision>
-   	<inertial>
-   		<mass value="2"/>
-   		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-   	</inertial>
-   </link>
-   <joint name="head-flange1" type="revolute">
+       </collision>
+       <inertial>
+           <mass value="2"/>
+           <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+       </inertial>
+    </link>
+    <joint name="head-flange1" type="revolute">
         <parent link="head"/>
         <child link="flange1"/> 
         <axis xyz="1 0 0"/>
         <origin xyz="0.05 0 0"/>
-        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
+        <limit lower="-0.2" upper="0.5" effort="10" velocity="10"/>
     </joint>
     
     <!--2.front_right-->
     <link name="flange2">
-   	<visual>
-   		<geometry>
-   			<box size="0.05 0.05 0.01"/>
-   		</geometry>
-        <origin rpy="0 0 0" xyz="0 -0.045 0"/>
-   		<material name="black"/>
-   	</visual>
-   	<collision>
-   		<geometry>
-   			<box size="0.05 0.05 0.01"/>
-   		</geometry>
-        <origin rpy="0 0 0" xyz="0 -0.045 0"/>
-   	</collision>
-   	<inertial>
-   		<mass value="2"/>
-   		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-   	</inertial>
-   </link>
-   <joint name="head-flange2" type="revolute">
+       <visual>
+            <geometry>
+               <box size="0.05 0.05 0.01"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 -0.045 0"/>
+            <material name="black"/>
+       </visual>
+       <collision>
+           <geometry>
+               <box size="0.05 0.05 0.01"/>
+           </geometry>
+           <origin rpy="0 0 0" xyz="0 -0.045 0"/>
+       </collision>
+       <inertial>
+           <mass value="2"/>
+           <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+       </inertial>
+    </link>
+    <joint name="head-flange2" type="revolute">
         <parent link="head"/>
         <child link="flange2"/> 
         <axis xyz="-1 0 0"/>
         <origin xyz="0.05 0 0"/>
-        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
+        <limit lower="-0.2" upper="0.5" effort="10" velocity="10"/>
     </joint>
     
     <!--3.back_left-->
     <link name="flange3">
-   	<visual>
-   		<geometry>
-   			<box size="0.05 0.05 0.01"/>
-   		</geometry>
-        <origin rpy="0 0 0" xyz="0 0.045 0"/>
-   		<material name="black"/>
-   	</visual>
-   	<collision>
-   		<geometry>
-   			<box size="0.05 0.05 0.01"/>
-   		</geometry>
-        <origin rpy="0 0 0" xyz="0 0.045 0"/>
-   	</collision>
-   	<inertial>
-   		<mass value="2"/>
-   		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-   	</inertial>
-   </link>
-   <joint name="tail-flange3" type="revolute">
+       <visual>
+           <geometry>
+               <box size="0.05 0.05 0.01"/>
+           </geometry>
+           <origin rpy="0 0 0" xyz="0 0.045 0"/>
+           <material name="black"/>
+       </visual>
+       <collision>
+           <geometry>
+               <box size="0.05 0.05 0.01"/>
+           </geometry>
+           <origin rpy="0 0 0" xyz="0 0.045 0"/>
+       </collision>
+       <inertial>
+           <mass value="2"/>
+           <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+       </inertial>
+    </link>
+    <joint name="tail-flange3" type="revolute">
         <parent link="tail"/>
         <child link="flange3"/> 
         <axis xyz="1 0 0"/>
         <origin xyz="-0.05 0 0"/>
-        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
+        <limit lower="-0.2" upper="0.5" effort="10" velocity="10"/>
     </joint>
     
     <!--4.back_right-->
     <link name="flange4">
-   	<visual>
-   		<geometry>
-   			<box size="0.05 0.05 0.01"/>
-   		</geometry>
-        <origin rpy="0 0 0" xyz="0 -0.045 0"/>
-   		<material name="black"/>
-   	</visual>
-   	<collision>
-   		<geometry>
-   			<box size="0.05 0.05 0.01"/>
-   		</geometry>
-        <origin rpy="0 0 0" xyz="0 -0.045 0"/>
-   	</collision>
-   	<inertial>
-   		<mass value="2"/>
-   		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-   	</inertial>
-   </link>
-   <joint name="tail-flange4" type="revolute">
+       <visual>
+           <geometry>
+               <box size="0.05 0.05 0.01"/>
+           </geometry>
+           <origin rpy="0 0 0" xyz="0 -0.045 0"/>
+           <material name="black"/>
+       </visual>
+       <collision>
+           <geometry>
+               <box size="0.05 0.05 0.01"/>
+           </geometry>
+           <origin rpy="0 0 0" xyz="0 -0.045 0"/>
+       </collision>
+       <inertial>
+           <mass value="2"/>
+           <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+       </inertial>
+    </link>
+    <joint name="tail-flange4" type="revolute">
         <parent link="tail"/>
         <child link="flange4"/> 
         <axis xyz="-1 0 0"/>
         <origin xyz="-0.05 0 0"/>
-        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
+        <limit lower="-0.2" upper="0.5" effort="10" velocity="10"/>
     </joint>
     
     <!-- Thighs-->
     <link name="thigh1">
-    	 <visual>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>    			
-    		</geometry>
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>    			
+            </geometry>
             <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
-    		<material name="red"/>
-    	 </visual>
-    	 <collision>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>
-    		</geometry>
-             <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
-    	 </collision>
-    	 <inertial>
-    		<mass value="1"/>
-    		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-    	 </inertial>
-     </link>
-     <joint name="flange-thigh1" type="revolute">
-    	 <parent link="flange1"/>
-    	 <child link="thigh1"/>
-    	 <axis xyz="0 -1 0"/>
-    	 <origin xyz="0 0.07 0"/>
-    	 <limit lower="0" upper="0.5" effort="10" velocity="10"/>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
+        </collision>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+        </inertial>
+    </link>
+    <joint name="flange-thigh1" type="revolute">
+        <parent link="flange1"/>
+        <child link="thigh1"/>
+        <axis xyz="0 -1 0"/>
+        <origin xyz="0 0.07 0" rpy = "0 0.5 0"/>
+        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
      </joint>
     
     <link name="thigh2">
-    	 <visual>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>    			
-    		</geometry>
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>    			
+            </geometry>
             <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
-    		<material name="red"/>
-    	 </visual>
-    	 <collision>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>
-    		</geometry>
-             <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
-    	 </collision>
-    	 <inertial>
-    		<mass value="1"/>
-    		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-    	 </inertial>
-     </link>
-     <joint name="flange-thigh2" type="revolute">
-    	 <parent link="flange2"/>
-    	 <child link="thigh2"/>
-    	 <axis xyz="0 -1 0"/>
-    	 <origin xyz="0 -0.07 0"/>
-    	 <limit lower="0" upper="0.5" effort="10" velocity="10"/>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
+        </collision>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+        </inertial>
+    </link>
+    <joint name="flange-thigh2" type="revolute">
+        <parent link="flange2"/>
+        <child link="thigh2"/>
+        <axis xyz="0 -1 0"/>
+        <origin xyz="0 -0.07 0" rpy = "0 0.5 0"/>
+        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
      </joint>
     
     <link name="thigh3">
-    	 <visual>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>    			
-    		</geometry>
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>    			
+            </geometry>
             <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
-    		<material name="blue"/>
-    	 </visual>
-    	 <collision>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>
-    		</geometry>
-             <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
-    	 </collision>
-    	 <inertial>
-    		<mass value="1"/>
-    		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-    	 </inertial>
-     </link>
-     <joint name="flange-thigh3" type="revolute">
-    	 <parent link="flange3"/>
-    	 <child link="thigh3"/>
-    	 <axis xyz="0 1 0"/>
-    	 <origin xyz="0 0.07 0"/>
-    	 <limit lower="0" upper="0.5" effort="10" velocity="10"/>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
+        </collision>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+        </inertial>
+    </link>
+    <joint name="flange-thigh3" type="revolute">
+        <parent link="flange3"/>
+        <child link="thigh3"/>
+        <axis xyz="0 1 0"/>
+        <origin xyz="0 0.07 0" rpy = "0 -0.5 0"/>
+        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
      </joint>
     
     <link name="thigh4">
-    	 <visual>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>    			
-    		</geometry>
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>    			
+            </geometry>
             <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
-    		<material name="blue"/>
-    	 </visual>
-    	 <collision>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>
-    		</geometry>
-             <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
-    	 </collision>
-    	 <inertial>
-    		<mass value="1"/>
-    		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-    	 </inertial>
-     </link>
-     <joint name="flange-thigh4" type="revolute">
-    	 <parent link="flange4"/>
-    	 <child link="thigh4"/>
-    	 <axis xyz="0 1 0"/>
-    	 <origin xyz="0 -0.07 0"/>
-    	 <limit lower="0" upper="0.5" effort="10" velocity="10"/>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
+        </collision>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+        </inertial>
+    </link>
+    <joint name="flange-thigh4" type="revolute">
+        <parent link="flange4"/>
+        <child link="thigh4"/>
+        <axis xyz="0 1 0"/>
+        <origin xyz="0 -0.07 0" rpy = "0 -0.5 0"/>
+        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
     </joint>
     
     <!--Legs-->
     <!--1.front_left-->
     <link name="leg1">
-    	 <visual>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>    			
-    		</geometry>
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>    			
+            </geometry>
             <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
-    		<material name="blue"/>
-    	 </visual>
-    	 <collision>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>
-    		</geometry>
-             <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
-    	 </collision>
-    	 <inertial>
-    		<mass value="1"/>
-    		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-    	 </inertial>
-     </link>
-     <joint name="thigh-leg1" type="revolute">
-    	 <parent link="thigh1"/>
-    	 <child link="leg1"/>
-    	 <axis xyz="0 1 0"/>
-    	 <origin xyz="0 0 -0.1"/>
-    	 <limit lower="0" upper="0.5" effort="10" velocity="10"/>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
+        </collision>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+        </inertial>
+    </link>
+    <joint name="thigh-leg1" type="revolute">
+        <parent link="thigh1"/>
+        <child link="leg1"/>
+        <axis xyz="0 1 0"/>
+        <origin xyz="0 0 -0.1" rpy="0 -1 0"/>
+        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
     </joint>
     
     <!--2.front_right-->
     <link name="leg2">
-    	 <visual>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>    			
-    		</geometry>
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>    			
+            </geometry>
             <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
-    		<material name="blue"/>
-    	 </visual>
-    	 <collision>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>
-    		</geometry>
-             <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
-    	 </collision>
-    	 <inertial>
-    		<mass value="1"/>
-    		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-    	 </inertial>
-     </link>
-     <joint name="thigh-leg2" type="revolute">
-    	 <parent link="thigh2"/>
-    	 <child link="leg2"/>
-    	 <axis xyz="0 1 0"/>
-    	 <origin xyz="0 0 -0.1"/>
-    	 <limit lower="0" upper="0.5" effort="10" velocity="10"/>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
+        </collision>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+        </inertial>
+    </link>
+    <joint name="thigh-leg2" type="revolute">
+        <parent link="thigh2"/>
+        <child link="leg2"/>
+        <axis xyz="0 1 0"/>
+        <origin xyz="0 0 -0.1" rpy="0 -1 0"/>
+        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
     </joint>
     
     <!--3.back_left-->
     <link name="leg3">
-    	 <visual>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>    			
-    		</geometry>
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>    			
+            </geometry>
             <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
-    		<material name="blue"/>
-    	 </visual>
-    	 <collision>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>
-    		</geometry>
-             <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
-    	 </collision>
-    	 <inertial>
-    		<mass value="1"/>
-    		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-    	 </inertial>
-     </link>
-     <joint name="thigh-leg3" type="revolute">
-    	 <parent link="thigh3"/>
-    	 <child link="leg3"/>
-    	 <axis xyz="0 1 0"/>
-    	 <origin xyz="0 0 -0.1"/>
-    	 <limit lower="0" upper="0.5" effort="10" velocity="10"/>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 -0.005 -0.05"/>
+        </collision>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+        </inertial>
+    </link>
+    <joint name="thigh-leg3" type="revolute">
+        <parent link="thigh3"/>
+        <child link="leg3"/>
+        <axis xyz="0 1 0"/>
+        <origin xyz="0 0 -0.1" rpy="0 1 0"/>
+        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
     </joint>
     
     <!--4.back_right-->
     <link name="leg4">
-    	 <visual>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>    			
-    		</geometry>
-            <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
-    		<material name="blue"/>
-    	 </visual>
-    	 <collision>
-    		<geometry>
-    			<box size="0.01 0.01 0.1"/>
-    		</geometry>
-             <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
-    	 </collision>
-    	 <inertial>
-    		<mass value="1"/>
-    		<inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
-    	 </inertial>
-     </link>
-     <joint name="thigh-leg4" type="revolute">
-    	 <parent link="thigh4"/>
-    	 <child link="leg4"/>
-    	 <axis xyz="0 1 0"/>
-    	 <origin xyz="0 0 -0.1"/>
-    	 <limit lower="0" upper="0.5" effort="10" velocity="10"/>
-    </joint>
-    
-    <!--Hooves-->
-   <!-- <link name="hoove1">
         <visual>
             <geometry>
-                <sphere radius="0.01"/>
+                <box size="0.01 0.01 0.1"/>    			
             </geometry>
+            <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
+            <material name="blue"/>
         </visual>
         <collision>
             <geometry>
+                <box size="0.01 0.01 0.1"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0.005 -0.05"/>
+        </collision>
+        <inertial>
+            <mass value="1"/>
+            <inertia ixx="5E-6" ixy="0" ixz="0" iyy="5E-6" iyz="0" izz="5E-6"/>
+        </inertial>
+    </link>
+    <joint name="thigh-leg4" type="revolute">
+        <parent link="thigh4"/>
+        <child link="leg4"/>
+        <axis xyz="0 1 0"/>
+        <origin xyz="0 0 -0.1" rpy="0 1 0"/>
+        <limit lower="-0.5" upper="0.5" effort="10" velocity="10"/>
+    </joint>
+    
+    <!--Hooves-->
+    <link name="hoove1">
+        <visual>
+            <geometry>
                 <sphere radius="0.005"/>
+            </geometry>
+            <origin xyz="0 0 0.005"/>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="0.001"/>
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.1"/>
+            <mass value="0.00001"/>
+            <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0.0" izz="0.002"/>
+
         </inertial>
+        
     </link>
     <joint name="leg-hoove1" type="fixed">
         <parent link="leg1"/>
         <child link="hoove1"/>
-        <origin xyz="0 -0.005 -0.100"/>
+        <origin xyz="0 -0.005 -0.105"/>
     </joint>
     
     <link name="hoove2">
         <visual>
             <geometry>
-                <sphere radius="0.01"/>
+                <sphere radius="0.005"/>
             </geometry>
+            <origin xyz="0 0 0.005"/>
         </visual>
         <collision>
             <geometry>
-                <sphere radius="0.01"/>
+                <sphere radius="0.001"/>
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.1"/>
+            <mass value="0.00001"/>
+            <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0.0" izz="0.002"/>
+
         </inertial>
+        
     </link>
     <joint name="leg-hoove2" type="fixed">
         <parent link="leg2"/>
         <child link="hoove2"/>
-        <origin xyz="0 0.005 -0.100"/>
+        <origin xyz="0 0.005 -0.105"/>
     </joint>
     
     <link name="hoove3">
         <visual>
             <geometry>
-                <sphere radius="0.01"/>
+                <sphere radius="0.005"/>
             </geometry>
+            <origin xyz="0 0 0.005"/>
         </visual>
         <collision>
             <geometry>
-                <sphere radius="0.01"/>
+                <sphere radius="0.001"/>
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.1"/>
+            <mass value="0.00001"/>
+            <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0.0" izz="0.002"/>
+
         </inertial>
     </link>
     <joint name="leg-hoove3" type="fixed">
         <parent link="leg3"/>
         <child link="hoove3"/>
-        <origin xyz="0 -0.005 -0.100"/>
+        <origin xyz="0 -0.005 -0.105"/>
     </joint>
     
     <link name="hoove4">
         <visual>
             <geometry>
-                <sphere radius="0.01"/>
+                <sphere radius="0.005"/>
             </geometry>
+            <origin xyz="0 0 0.005"/>
         </visual>
         <collision>
             <geometry>
-                <sphere radius="0.01"/>
+                <sphere radius="0.001"/>
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.1"/>
+            <mass value="0.00001"/>
+            <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0.0" izz="0.002"/>
+
         </inertial>
+        
     </link>
     <joint name="leg-hoove4" type="fixed">
         <parent link="leg4"/>
         <child link="hoove4"/>
-        <origin xyz="0 0.005 -0.100"/>
-    </joint>-->
- </robot>
+        <origin xyz="0 0.005 -0.105"/>
+    </joint>
+    
+</robot>

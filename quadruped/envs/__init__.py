@@ -1,1 +1,1 @@
-from quadruped.envs.quadruped_env import QuadrupedEnv
+from quad.envs.quad_env import QuadEnv
